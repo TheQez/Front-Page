@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en_GB">
 	<head>
+		<script>
+			function setCookie(cname,cvalue,exdays)
+			{
+				var d = new Date();
+				d.setTime(d.getTime()+(exdays*24*60*60*1000));
+				var expires = "expires="+d.toGMTString();
+				document.cookie = cname + "=" + cvalue + "; " + expires;
+			}
+		</script>
 		<style>
 			a:link {color:rgb(0,0,192)}
 			a:visited {color:rgb(0,0,192)}
