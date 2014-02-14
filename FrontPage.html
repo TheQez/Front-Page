@@ -20,19 +20,30 @@
 		<h3><span style="color:rgb(0,128,0)">Favorite</span></h3>
 		<div id="favourite"></div>
 		<script>
-		if (typeof(Storage) != "undefined")
-  		{
-			localStorage.setItem("favouriteStorage", "Test");
-			document.getElementById("favourite").innerHTML=localStorage.getItem("favouriteStorage");
-		}
-		else
+		//If link is clicked, call this
+		function linkClick(linkName)
 		{
-			document.getElementById("favourite").innerHTML="Your browser doesnt support HTML5 web storage ._.";
+			//If HTML5 localStorage is enabled
+			if (typeof(Storage) != "undefined")
+			{
+				//If link clicked is google
+				if (linkName == 'google'){
+					//Set "googleClick" (count of times google link is clicked) to 1 more than it was previously (+localStorage to convert to int as localStorage is a string)
+					localStorage.setItem("googleClick",+localStorage.getItem("googleClick")+1);
+				}
+			}
+			//No support, display error message
+			else
+			{
+				document.getElementById("favourite").innerHTML="No browser support ._.";
+			}
 		}
+		document.getElementById("favourite").innerHTML=localStorage.getItem("googleClick");
 		</script>
 		<hr>
+		<!-- All links, call linkClick() if clicked and pass link name -->
 		<h3><span style="color:rgb(0,128,0)">General</span></h3>
-		<p><a href="http://www.google.com" target="_self">Google</a></p>
+		<p><a href="http://www.google.com" onClick="linkClick('google')" target="_self">Google</a></p>
 		<p><a href="https://www.doddlelearn.co.uk/app/login?" target="_self">Doddle</a></p>
 		<p><a href="https://www.klp.rm.com" target="_self">RM Portal</a></p>
 		<hr>
