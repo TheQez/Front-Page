@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en_GB">
 	<head>
-		<script>
-			function setCookie(cname,cvalue,exdays)
-			{
-				var d = new Date();
-				d.setTime(d.getTime()+(exdays*24*60*60*1000));
-				var expires = "expires="+d.toGMTString();
-				document.cookie = cname + "=" + cvalue + "; " + expires;
-			}
-		</script>
 		<style>
 			a:link {color:rgb(0,0,192)}
 			a:visited {color:rgb(0,0,192)}
@@ -25,12 +16,20 @@
 		</style>
 	</head>
 	<body>
-		<script>
-		 var googleClickNumber=1;
-			setCookie("googleClick",googleClickNumber,1);
-		</script>
 		<h1><p><span style="color:rgb(100,100,100)">Front Page</span></p></h1>
 		<h3><span style="color:rgb(0,128,0)">Favorite</span></h3>
+		<div id="favourite"></div>
+		<script>
+		if (typeof(Storage) != "undefined")
+  		{
+			localStorage.setItem("favouriteStorage", "Test");
+			document.getElementById("favourite").innerHTML=localStorage.getItem("favouriteStorage");
+		}
+		else
+		{
+			document.getElementById("favourite").innerHTML="Your browser doesnt support HTML5 web storage ._.";
+		}
+		</script>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">General</span></h3>
 		<p><a href="http://www.google.com" target="_self">Google</a></p>
