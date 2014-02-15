@@ -14,12 +14,98 @@
 				margin:2px; 
 			}
 		</style>
-	</head>
-	<body>
-		<h1><p><span style="color:rgb(100,100,100)">Front Page</span></p></h1>
-		<h3><span style="color:rgb(0,128,0)">Favorite</span></h3>
-		<div id="favourite"></div>
 		<script>
+		var int_highestLink;
+		var str_highestLink;
+		var highestLinkURL;
+		var highestLinkHyperLink;
+		function displayFavourite()
+		{
+			//If localstorage is enabled, detect most used link and display it
+			if (typeof(Storage) != "undefined")
+			{
+				//Set int_highestLink to the number of times the most used link has been clicked on
+				int_highestLink=Math.max(+localStorage.getItem("googleClick"),+localStorage.getItem("doddleClick"),+localStorage.getItem("klpClick"),+localStorage.getItem("mymathsClick"),+localStorage.getItem("biologyinfoClick"),+localStorage.getItem("chemistryinfoClick"),+localStorage.getItem("physicsinfoClick"),+localStorage.getItem("wiktionaryClick"),+localStorage.getItem("linguascopeClick"),+localStorage.getItem("w3schoolsClick"),+localStorage.getItem("githubClick"));
+				
+				//No links clicked yet, do nothing
+				if(int_highestLink == 0)
+				{
+				}
+				//Links clicked, display favourite
+				else
+				{
+					//If google's clicks matches the most clicked link, set the highest link to google and its URL
+					if(int_highestLink == +localStorage.getItem("googleClick"))
+					{
+						//Highest link name is google (Text displayed)
+						str_highestLink="Google";
+						//Hyperlink address is google's (Link the hyperlink leads to)
+						highestLinkURL="http://www.google.com";
+					}
+					if(int_highestLink == +localStorage.getItem("doddleClick"))
+					{
+						str_highestLink="Doddle";
+						highestLinkURL="https://www.doddlelearn.co.uk/app/login?";
+					}
+					if(int_highestLink == +localStorage.getItem("klpClick"))
+					{
+						str_highestLink="RM Portal";
+						highestLinkURL="https://www.klp.rm.com";
+					}
+					if(int_highestLink == +localStorage.getItem("mymathsClick"))
+					{
+						str_highestLink="MyMaths";
+						highestLinkURL="http://www.mymaths.co.uk/";
+					}
+					if(int_highestLink == +localStorage.getItem("biologyinfoClick"))
+					{
+						str_highestLink="BiologyInfo";
+						highestLinkURL="http://www.biologyinfo.co.uk/";
+					}
+					if(int_highestLink == +localStorage.getItem("chemistryInfoClick"))
+					{
+						str_highestLink="ChemistryInfo";
+						highestLinkURL="http://www.chemistryinfo.co.uk/";
+					}
+					if(int_highestLink == +localStorage.getItem("physicsInfoClick"))
+					{
+						str_highestLink="PhysicsInfo";
+						highestLinkURL="http://www.physicsinfo.co.uk/";
+					}
+					if(int_highestLink == +localStorage.getItem("wiktionaryClick"))
+					{
+						str_highestLink="Wiktionary";
+						highestLinkURL="https://en.wiktionary.org";
+					}
+					if(int_highestLink == +localStorage.getItem("linguascopeClick"))
+					{
+						str_highestLink="Linguascope";
+						highestLinkURL="http://www.linguascope.com/";
+					}
+					if(int_highestLink == +localStorage.getItem("w3schoolsClick"))
+					{
+						str_highestLink="W3Schools";
+						highestLinkURL="http://www.w3schools.com/";
+					}
+					if(int_highestLink == +localStorage.getItem("githubClick"))
+					{
+						str_highestLink="GitHub";
+						highestLinkURL="https://github.com";
+					}
+					
+					//The hyperlink is the highest links name and leads to their website
+					highestLinkHyperLink=str_highestLink.link(highestLinkURL);
+					//Set the "favourite" (Under favourite tab) to the hyperlink
+					document.getElementById("favourite").innerHTML=highestLinkHyperLink;
+				}
+			}
+			else
+			{
+				//HTML5 localstorage not enabled
+				document.getElementById("favourite").innerHTML="Your browser doesnt support HTML5 LocalStorage ._. (Read the README for more details about this)";
+			}
+		}
+		
 		//If link is clicked, call this
 		function linkClick(linkName)
 		{
@@ -31,39 +117,70 @@
 					//Set "googleClick" (count of times google link is clicked) to 1 more than it was previously (+localStorage to convert to int as localStorage is a string)
 					localStorage.setItem("googleClick",+localStorage.getItem("googleClick")+1);
 				}
-			}
-			//No support, display error message
-			else
-			{
-				document.getElementById("favourite").innerHTML="No browser support ._.";
+				if (linkName == 'doddle'){
+					localStorage.setItem("doddleClick",+localStorage.getItem("doddleClick")+1);
+				}
+				if (linkName == 'klp'){
+					localStorage.setItem("klpClick",+localStorage.getItem("klpClick")+1);
+				}
+				if (linkName == 'mymaths'){
+					localStorage.setItem("mymathsClick",+localStorage.getItem("mymathsClick")+1);
+				}
+				if (linkName == 'biologyinfo'){
+					localStorage.setItem("biologyinfoClick",+localStorage.getItem("biologyinfoClick")+1);
+				}
+				if (linkName == 'chemistryinfo'){
+					localStorage.setItem("chemistryinfoClick",+localStorage.getItem("chemistryinfoClick")+1);
+				}
+				if (linkName == 'physicsinfo'){
+					localStorage.setItem("physicsinfoClick",+localStorage.getItem("physicsinfoClick")+1);
+				}
+				if (linkName == 'wiktionary'){
+					localStorage.setItem("wiktionaryClick",+localStorage.getItem("wiktionaryClick")+1);
+				}
+				if (linkName == 'linguascope'){
+					localStorage.setItem("linguascopeClick",+localStorage.getItem("linguascopeClick")+1);
+				}
+				if (linkName == 'w3schools'){
+					localStorage.setItem("w3schoolsClick",+localStorage.getItem("w3schoolsClick")+1);
+				}
+				if (linkName == 'github'){
+					localStorage.setItem("githubClick",+localStorage.getItem("githubClick")+1);
+				}
+				
+				
 			}
 		}
-		document.getElementById("favourite").innerHTML=localStorage.getItem("googleClick");
 		</script>
+	</head>
+	<body onload="displayFavourite()">
+		<h1><p><span style="color:rgb(100,100,100)">Front Page</span></p></h1>
+		<h3><span style="color:rgb(0,128,0)">Favourite</span></h3>
+		<div id="favourite"></div>
 		<hr>
 		<!-- All links, call linkClick() if clicked and pass link name -->
 		<h3><span style="color:rgb(0,128,0)">General</span></h3>
 		<p><a href="http://www.google.com" onClick="linkClick('google')" target="_self">Google</a></p>
-		<p><a href="https://www.doddlelearn.co.uk/app/login?" target="_self">Doddle</a></p>
-		<p><a href="https://www.klp.rm.com" target="_self">RM Portal</a></p>
+		<p><a href="https://www.doddlelearn.co.uk/app/login?" onClick="linkClick('doddle')" target="_self">Doddle</a></p>
+		<p><a href="https://www.klp.rm.com" onClick="linkClick('klp')" target="_self">RM Portal</a></p>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">Maths</span></h3>
-		<p><a href="http://www.mymaths.co.uk/" target="_self">MyMaths</a></p>
+		<p><a href="http://www.mymaths.co.uk/" onClick="linkClick('mymaths')" target="_self">MyMaths</a></p>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">Science</span></h3>
-		<p><a href="http://www.biologyinfo.co.uk/" target="_self">BiologyInfo</a></p>
-		<p><a href="http://www.chemistryinfo.co.uk/" target="_self">ChemistryInfo</a></h4>
-		<p><a href="http://www.physicsinfo.co.uk/" target="_self">PhysicsInfo</a></h4>
+		<p><a href="http://www.biologyinfo.co.uk/" onClick="linkClick('biologyinfo')" target="_self">BiologyInfo</a></p>
+		<p><a href="http://www.chemistryinfo.co.uk/" onClick="linkClick('chemistryinfo')" target="_self">ChemistryInfo</a></h4>
+		<p><a href="http://www.physicsinfo.co.uk/" onClick="linkClick('physicsinfo')" target="_self">PhysicsInfo</a></h4>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">English</span></h3>
-		<p><a href="https://en.wiktionary.org" target="_self">Wiktionary</a></p>
+		<p><a href="https://en.wiktionary.org" onClick="linkClick('wiktionary')" target="_self">Wiktionary</a></p>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">French</span></h3>
-		<p><a href="http://www.linguascope.com/" target="_self">Linguascope</a></p>
+		<p><a href="http://www.linguascope.com/" onClick="linkClick('linguascope')" target="_self">Linguascope</a></p>
 		<hr>
 		<h3><span style="color:rgb(0,128,0)">ICT</span></h3>
-		<p><a href="http://www.w3schools.com/" target="_self">W3Schools</a></p>
-		<p><a href="https://github.com" target="_self">Github</a></p>
+		<p><a href="http://www.w3schools.com/" onClick="linkClick('w3schools')" target="_self">W3Schools</a></p>
+		<p><a href="https://github.com" onClick="linkClick('github')" target="_self">GitHub</a></p>
 		<h6>Alex Slater  2014</h6>
 	</body>
 </html>
