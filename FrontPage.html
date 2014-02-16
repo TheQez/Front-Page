@@ -147,8 +147,44 @@
 				if (linkName == 'github'){
 					localStorage.setItem("githubClick",+localStorage.getItem("githubClick")+1);
 				}
-				
-				
+				if (linkName == 'favourite'){
+					
+					//If favourite link is google
+					if (str_highestLink == 'Google'){
+						//Add a click onto google's local storage (Same as before, but this is if it is in favourites and is clicked there)
+						localStorage.setItem("googleClick",+localStorage.getItem("googleClick")+1);
+					}
+					if (str_highestLink == 'Doddle'){
+						localStorage.setItem("doddleClick",+localStorage.getItem("doddleClick")+1);
+					}
+					if (str_highestLink == 'RM Portal'){
+						localStorage.setItem("klpClick",+localStorage.getItem("klpClick")+1);
+					}
+					if (str_highestLink == 'MyMaths'){
+						localStorage.setItem("mymathsClick",+localStorage.getItem("mymathsClick")+1);
+					}
+					if (str_highestLink == 'BiologyInfo'){
+						localStorage.setItem("biologyinfoClick",+localStorage.getItem("biologyinfoClick")+1);
+					}
+					if (str_highestLink == 'ChemistryInfo'){
+						localStorage.setItem("chemistryinfoClick",+localStorage.getItem("chemistryinfoClick")+1);
+					}
+					if (str_highestLink == 'PhysicsInfo'){
+						localStorage.setItem("physicsinfoClick",+localStorage.getItem("physicsinfoClick")+1);
+					}
+					if (str_highestLink == 'Wiktionary'){
+						localStorage.setItem("wiktionaryClick",+localStorage.getItem("wiktionaryClick")+1);
+					}
+					if (str_highestLink == 'Linguascope'){
+						localStorage.setItem("linguascopeClick",+localStorage.getItem("linguascopeClick")+1);
+					}
+					if (str_highestLink == 'W3Schools'){
+						localStorage.setItem("w3schoolsClick",+localStorage.getItem("w3schoolsClick")+1);
+					}
+					if (str_highestLink == 'GitHub'){
+						localStorage.setItem("githubClick",+localStorage.getItem("githubClick")+1);
+					}
+				}
 			}
 		}
 		</script>
@@ -156,7 +192,7 @@
 	<body onload="displayFavourite()">
 		<h1><p><span style="color:rgb(100,100,100)">Front Page</span></p></h1>
 		<h3><span style="color:rgb(0,128,0)">Favourite</span></h3>
-		<div id="favourite"></div>
+		<div onClick="linkClick('favourite')" id="favourite"></div>
 		<hr>
 		<!-- All links, call linkClick() if clicked and pass link name -->
 		<h3><span style="color:rgb(0,128,0)">General</span></h3>
